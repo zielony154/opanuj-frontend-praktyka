@@ -4,6 +4,14 @@ import type { Result } from './types';
 import { NumberInput } from './components/NumberInput';
 import { OperationButton } from './components/OperationButton';
 
+const ResultDisplay = ({ result }: { result: Result }) => {
+  return (
+    <div>
+      {result.type === 'success' ? `Result: ${result.value}` : result.message}
+    </div>
+  );
+};
+
 const App = () => {
   const [lhsOperand, setLhsOperand] = useState<number>(0);
   const [rhsOperand, setRhsOperand] = useState<number>(0);
@@ -25,9 +33,7 @@ const App = () => {
         <OperationButton symbol="*" onClick={() => calculateResult(multiply)} />
         <OperationButton symbol="/" onClick={() => calculateResult(divide)} />
       </div>
-      <div>
-        {result.type === 'success' ? `Result: ${result.value}` : result.message}
-      </div>
+      <ResultDisplay result={result} />
     </div>
   );
 };
