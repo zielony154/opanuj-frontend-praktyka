@@ -29,10 +29,24 @@ const poland = {
 };
 
 export const mockCountriesData = {
-  all: Array.from(
-    { length: 50 },
-    (_, index) => [poland, germany, france][index % 3]
-  ),
+  all: [
+    poland,
+    germany,
+    france,
+    ...Array.from(
+      { length: 47 },
+      (_, index) => ({
+        name: { common: `Country ${index + 4}` },
+        flags: {
+          png: `https://flagcdn.com/w320/random${index + 4}.png`,
+          alt: `Country ${index + 4} flag`,
+        },
+        population: Math.floor(Math.random() * 100000000),
+        currencies: { USD: { name: 'US Dollar' } },
+        id: `country-${index + 4}`
+      })
+    )
+  ],
 
   poland: [poland],
 
